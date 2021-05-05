@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvcc-smb
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: do-block-storage
+  resources:
+    requests:
+      storage: 1Gi
