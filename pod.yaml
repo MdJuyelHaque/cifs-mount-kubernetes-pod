@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-smb
+spec:
+  containers:
+    - image: nginx:1.17.3-alpine
+      name: nginx-smb
+      command:
+        - "/bin/sh"
+        - "-c"
+        - while true; do echo $(date) >> /mnt/smb/outfile; sleep 1; done
+      volumeMounts:
+        - name: smb01
+          mountPath: "/mnt/smb"
+  volumes:
+    - name: smb01
+      persistentVolumeClaim:
+        claimName: pvcc-smb
